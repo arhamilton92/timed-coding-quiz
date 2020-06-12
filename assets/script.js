@@ -15,6 +15,15 @@ var startBtn = document.getElementById("start-button");
 var timeLeft = document.getElementById("time");
 var resetBtn = document.createElement("button")
 var welcome = document.getElementById("intro");
+var quiz = document.getElementById("quiz");
+
+var quizQuestion = document.getElementById("quiz-question");
+var questionNumber = 0;
+var answerBtn1 = document.getElementById("answer1");
+var answerBtn2 = document.getElementById("answer2");
+var answerBtn3 = document.getElementById("answer3");
+var answerBtn4 = document.getElementById("answer4");
+
 var secondsLeft = "3";
 var timerInterval = "";
 
@@ -47,7 +56,21 @@ var questions = [
     }
 ]
 
+var highScores = [
+    {
+        name: "ARH",
+        score: 10000000,
+    }
+];
+
+localStorage.setItem("scores", JSON.stringify(highScores));
+console.log(localStorage.getItem("scores"));
+
+var scoresFromStorage = JSON.parse(localStorage.getItem("scores"));
+console.log(scoresFromStorage);
+
 //DEFINE FUNCTIONS
+//
 function startTimer() {
     //starts the timer
     var timerInterval = setInterval(function() {
@@ -60,9 +83,18 @@ function startTimer() {
     }, 1000);
 }
 
-//displays the first quiz question
-function displayQuiz () {
-    console.log('display quiz');
+function nextQuestion() {
+    questionNumber ++;
+}
+
+//displays the quiz questions and answers
+function displayQuestion () {
+    quizQuestion.textContent = questions[0].question;
+    answer1.textContent = questions[questionNumber].answersArray[0];
+    answer2.textContent = questions[questionNumber].answersArray[1];
+    answer3.textContent = questions[questionNumber].answersArray[2];
+    answer4.textContent = questions[questionNumber].answersArray[3];
+    quiz.style = "display: block";
 }
 
 //creates a button that can be used to reset to beginning
@@ -74,14 +106,16 @@ function resetWelcome() {
     reset.append(resetBtn);
 }
 
+
 //CALL FUNCTIONS
+
 
 //EVENT LISTENERS
 //click start button to begin quiz
 startBtn.addEventListener("click", function() {
     welcome.style = "display: none";
     startTimer();
-    displayQuiz();
+    displayQuestion();
 })
 
 //click reset button to delete reset button and display the original welcome intro
