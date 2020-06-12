@@ -16,6 +16,8 @@ var timeLeft = document.getElementById("time");
 var resetBtn = document.createElement("button")
 var welcome = document.getElementById("intro");
 var quiz = document.getElementById("quiz");
+var winScreen = document.getElementById("win-screen");
+var score = 0;
 
 var quizQuestion = document.getElementById("quiz-question");
 var questionNumber = 0;
@@ -31,28 +33,28 @@ var timerInterval = "";
 var questions = [
     {
         question: "Commonly used data types DO NOT include:",
-        answersArray: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        correctAnswer: 3,
+        answersArray: ["strings", "booleans", "alerts", "numbers"],
+        correctAnswer: "alerts",
     },
     {
         question: "The condition in an if/else statement is enclosed within ___.",
-        answersArray: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
-        correctAnswer: 3,
+        answersArray: ["quotes", "curly brackets", "parentheses", "square brackets"],
+        correctAnswer: "parentheses",
     },
     {
         question: "Arrays in JavaScript can be used to store ___.",
-        answersArray: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
-        correctAnswer: 4,
+        answersArray: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        correctAnswer: "all of the above",
     },
     {
         question: "String values must be enclosed within ___ whwn being assigned to variables.",
-        answersArray: ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"],
-        correctAnswer: 3,
+        answersArray: ["commas", "curly brackets", "quotes", "parentheses"],
+        correctAnswer: "quotes",
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answersArray: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"],
-        correctAnswer: 4,
+        answersArray: ["JavaScript", "terminal/bash", "for loops", "console.log"],
+        correctAnswer: "console.log",
     }
 ]
 
@@ -63,11 +65,11 @@ var highScores = [
     }
 ];
 
-localStorage.setItem("scores", JSON.stringify(highScores));
-console.log(localStorage.getItem("scores"));
+// localStorage.setItem("scores", JSON.stringify(highScores));
+// console.log(localStorage.getItem("scores"));
 
-var scoresFromStorage = JSON.parse(localStorage.getItem("scores"));
-console.log(scoresFromStorage);
+// var scoresFromStorage = JSON.parse(localStorage.getItem("scores"));
+// console.log(scoresFromStorage);
 
 //DEFINE FUNCTIONS
 //
@@ -79,21 +81,24 @@ function startTimer() {
         //stops the timer at 0 seconds left
         if(secondsLeft === 0) {
         clearInterval(timerInterval);
+        displayWinScreen();
         }
     }, 1000);
 }
 
 function nextQuestion() {
-    questionNumber ++;
+    questionNumber++;
+    console.log(questionNumber);
+    displayQuestion();
 }
 
 //displays the quiz questions and answers
-function displayQuestion () {
-    quizQuestion.textContent = questions[0].question;
-    answer1.textContent = questions[questionNumber].answersArray[0];
-    answer2.textContent = questions[questionNumber].answersArray[1];
-    answer3.textContent = questions[questionNumber].answersArray[2];
-    answer4.textContent = questions[questionNumber].answersArray[3];
+function displayQuestion () { 
+    quizQuestion.textContent = questions[questionNumber].question;
+    answer1.textContent = "1. " + questions[questionNumber].answersArray[0];
+    answer2.textContent = "2. " + questions[questionNumber].answersArray[1];
+    answer3.textContent = "3. " + questions[questionNumber].answersArray[2];
+    answer4.textContent = "4. " + questions[questionNumber].answersArray[3];
     quiz.style = "display: block";
 }
 
@@ -106,7 +111,10 @@ function resetWelcome() {
     reset.append(resetBtn);
 }
 
-
+function displayWinScreen() {
+    quiz.style = "display: none";
+    win.style = "display: block";
+}
 //CALL FUNCTIONS
 
 
@@ -124,3 +132,72 @@ resetBtn.addEventListener("click", function() {
     quiz.removeChild()
     welcome.style = "display: block";
 })
+
+answerBtn1.addEventListener("click", function() {
+    userChoice = event.target.textContent;
+    if (userChoice === "1. " + questions[questionNumber].correctAnswer) {
+        score++;
+        nextQuestion();
+    } else {
+    secondsLeft = secondsLeft - 15;
+    console.log(secondsLeft);
+    nextQuestion();
+    }
+    })
+
+answerBtn2.addEventListener("click", function() {
+    userChoice = event.target.textContent;
+    if (userChoice === "2. " + questions[questionNumber].correctAnswer) {
+        score++;
+        nextQuestion();
+    }
+    else {
+    secondsLeft = secondsLeft - 15;
+    nextQuestion();
+    }
+    })
+
+answerBtn3.addEventListener("click", function() {
+    userChoice = event.target.textContent;
+    console.log(userChoice);
+    if (userChoice === "3. " + questions[questionNumber].correctAnswer) {
+        score++;
+        nextQuestion();
+    }else {
+    secondsLeft = secondsLeft - 15;
+    nextQuestion();
+    }
+    })
+
+answerBtn4.addEventListener("click", function() {
+    userChoice = event.target.textContent;
+    if (userChoice === "4. " + questions[questionNumber].correctAnswer) {
+        score++;
+        nextQuestion();
+        
+    }
+    else {
+    secondsLeft = secondsLeft - 15;
+    nextQuestion();
+    }
+    })
+
+
+// //STUFF FOR HOMEWORK
+// var questions = [
+//     {
+//         question: "question",
+//         answers: ["1", "2", "3", "4"],
+//         correctAnswer: 4,
+//     }
+// ]
+// for (var i = 0; i < questions.length; i++) {
+//     if(i === questions[0].correctAnswer){
+//         console.log("that answer is correct!");
+//     }else{
+//         console.log("That answer is wrong.");
+//     }
+// }
+// //data attribute on the button
+// //0 1 2 3
+// //compare data attribute of button to correct answer

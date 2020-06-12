@@ -3,11 +3,15 @@
 }
 
 .textcenter {
-    text-align: center
+    text-align: center;
 }
 
 #quiz {
-    display: none
+    display: none;
+}
+
+#win-screen {
+    display: none;
 }
 
 button {
