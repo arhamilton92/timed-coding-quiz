@@ -17,7 +17,7 @@ var resetBtn = document.createElement("button")
 var welcome = document.getElementById("intro");
 var quiz = document.getElementById("quiz");
 var winScreen = document.getElementById("win-screen");
-var score = 0;
+var scoreDisplay = document.getElementById("score");
 
 var quizQuestion = document.getElementById("quiz-question");
 var questionNumber = 0;
@@ -26,7 +26,8 @@ var answerBtn2 = document.getElementById("answer2");
 var answerBtn3 = document.getElementById("answer3");
 var answerBtn4 = document.getElementById("answer4");
 
-var secondsLeft = "3";
+var score = 0;
+var secondsLeft = "20";
 var timerInterval = "";
 
 //an array of objects containing questions, answers, and the correct answer for each.
@@ -113,7 +114,8 @@ function resetWelcome() {
 
 function displayWinScreen() {
     quiz.style = "display: none";
-    win.style = "display: block";
+    scoreDisplay.textContent = "Score: " + score;
+    winScreen.style = "display: block";
 }
 //CALL FUNCTIONS
 
@@ -140,8 +142,8 @@ answerBtn1.addEventListener("click", function() {
         nextQuestion();
     } else {
     secondsLeft = secondsLeft - 15;
-    console.log(secondsLeft);
-    nextQuestion();
+        console.log(secondsLeft);
+        nextQuestion();
     }
     })
 
@@ -152,8 +154,8 @@ answerBtn2.addEventListener("click", function() {
         nextQuestion();
     }
     else {
-    secondsLeft = secondsLeft - 15;
-    nextQuestion();
+        secondsLeft = secondsLeft - 15;
+        nextQuestion();
     }
     })
 
@@ -164,8 +166,8 @@ answerBtn3.addEventListener("click", function() {
         score++;
         nextQuestion();
     }else {
-    secondsLeft = secondsLeft - 15;
-    nextQuestion();
+        secondsLeft = secondsLeft - 15;
+        nextQuestion();
     }
     })
 
@@ -177,8 +179,8 @@ answerBtn4.addEventListener("click", function() {
         
     }
     else {
-    secondsLeft = secondsLeft - 15;
-    nextQuestion();
+        secondsLeft = secondsLeft - 15;
+        nextQuestion();
     }
     })
 
