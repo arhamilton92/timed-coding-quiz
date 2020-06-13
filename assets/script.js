@@ -5,9 +5,9 @@ var welcome = document.getElementById("intro");
 var quiz = document.getElementById("quiz");
 var winScreen = document.getElementById("win-screen");
 var scoreDisplay = document.getElementById("score");
-var initialPrompt = document.getElementById("high-score-submit");
-var initialInput = document.getElementById("initial-input")
-var submitScore = document.getElementById("submit-score")
+var initialInput = document.getElementById("initial-input");
+var submitScore = document.getElementById("submit-score");
+var highScoreScreen = document.getElementById("high-score-screen");
 
 var quizQuestion = document.getElementById("quiz-question");
 var questionNumber = 0;
@@ -85,9 +85,13 @@ function displayWinScreen() {
     resetWelcome();
 }
 
+function displayHighScores() {
+
+}
+
 //creates a button that can be used to reset to beginning
 function resetWelcome() {
-    resetBtn.textContent = "RESET";
+    resetBtn.textContent = "PLAY AGAIN";
     resetBtn.setAttribute("id", "reset-button");
     resetBtn.setAttribute("class","btn btn-info mt-4");
     //Appends button to reset div
@@ -135,19 +139,19 @@ resetBtn.addEventListener("click", function() {
     // removes win screen, quiz, highscore displays
     winScreen.style = "display: none";
     quiz.style = "display: none";
-    highScore.style = "display: none";
+    // highScore.style = "display: none";
     // displays welcome screen
     welcome.style = "display: block";
     //resets timer display
     timeLeft.textContent = "Time: 60";
 })
 
-submitScore.addEventListener('click', function(event) {
-    event.preventDefault();
-    winScreen.style = "display: none";
-    initialPrompt.style = "display: none";
+// submitScore.addEventListener('click', function(event) {
+//     event.preventDefault();
+//     winScreen.style = "display: none";
+//     initialPrompt.style = "display: none";
 
-})
+// })
 
 // showScores.addEventListener('click', function() {
 //     document.querySelector('#container').setAttribute('class', 'hide');

@@ -15,6 +15,11 @@
 }
 
 #high-scores {
+    display: none;
+}
+
+#high-score-screen {
+    display: none;
 }
 
 .input-group {
