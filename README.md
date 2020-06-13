@@ -18,7 +18,7 @@ Bonus: Added a reset button so you can retake the quiz without refreshing the br
 
 ## Usage
 
-[Deployed Website](https://arhamilton92.github.io/responsive-portfolio/)
+[Deployed Website](https://arhamilton92.github.io/timed-coding-quiz/)
 
 Answer the questions as fast as you can. Try and get a perfect score!
 
