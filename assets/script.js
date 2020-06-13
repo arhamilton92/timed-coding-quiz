@@ -231,23 +231,3 @@ answerBtn4.addEventListener("click", function() {
         }
     }
     })
-
-
-// //STUFF FOR HOMEWORK
-// var questions = [
-//     {
-//         question: "question",
-//         answers: ["1", "2", "3", "4"],
-//         correctAnswer: 4,
-//     }
-// ]
-// for (var i = 0; i < questions.length; i++) {
-//     if(i === questions[0].correctAnswer){
-//         console.log("that answer is correct!");
-//     }else{
-//         console.log("That answer is wrong.");
-//     }
-// }
-// //data attribute on the button
-// //0 1 2 3
-// //compare data attribute of button to correct answer
