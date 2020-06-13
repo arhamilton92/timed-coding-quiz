@@ -1,5 +1,3 @@
-
-//DEFINE GLOBAL VARIABLES
 var startBtn = document.getElementById("start-button");
 var timeLeft = document.getElementById("time");
 var resetBtn = document.createElement("button")
@@ -7,9 +5,9 @@ var welcome = document.getElementById("intro");
 var quiz = document.getElementById("quiz");
 var winScreen = document.getElementById("win-screen");
 var scoreDisplay = document.getElementById("score");
-var highScore = document.getElementById("high-scores");
-var enterInitials = document.getElementById("enter-initials")
-var initialText = "";
+var initialPrompt = document.getElementById("high-score-submit");
+var initialInput = document.getElementById("initial-input")
+var submitScore = document.getElementById("submit-score")
 
 var quizQuestion = document.getElementById("quiz-question");
 var questionNumber = 0;
@@ -19,7 +17,7 @@ var answerBtn3 = document.getElementById("answer3");
 var answerBtn4 = document.getElementById("answer4");
 
 var score = 0;
-var secondsLeft = "4";
+var secondsLeft = "60";
 var timerInterval = "";
 
 //an array of objects containing questions, answers, and the correct answer for each.
@@ -51,7 +49,6 @@ var questions = [
     },
 ]
 
-//DEFINE FUNCTIONS
 // starts countdown
 function startTimer() {
     //starts the timer
@@ -100,10 +97,28 @@ function resetWelcome() {
     score = 0;
 }
 
-//CALL FUNCTIONS
 
+function correctAnswer() {
+    score++;
+    if (questionNumber === 4){
+        displayWinScreen();
+    }
+    else {
+        questionNumber++;
+        displayQuestion();
+    }
+}
 
-//EVENT LISTENERS
+function incorrectAnswer() {
+    if (questionNumber === 4){
+        displayWinScreen();
+    }
+    else {
+    secondsLeft = secondsLeft - 15;
+    questionNumber++;
+    displayQuestion();
+    }
+}
 
 //click start button to begin quiz
 startBtn.addEventListener("click", function() {
@@ -127,101 +142,41 @@ resetBtn.addEventListener("click", function() {
     timeLeft.textContent = "Time: 60";
 })
 
+submitScore.addEventListener('click', function(event) {
+    event.preventDefault();
+    winScreen.style = "display: none";
+    initialPrompt.style = "display: none";
+
+})
+
+// showScores.addEventListener('click', function() {
+//     document.querySelector('#container').setAttribute('class', 'hide');
+//     let i = 0;
+//     while (i < scoreElements.length) {
+//         scoreElements[i].setAttribute('class', 'scoreScreen');
+//         i++;
+//     };
+// });
+
 //I didn't want to have four seperate listeners for this. But I couldn't target multiple classes/id's for one button without it breaking. So I don't know how else to do it :(
 //event listeners for answer buttons
 answerBtn1.addEventListener("click", function() {
     userChoice = event.target.textContent;
-    if (userChoice === "1. " + questions[questionNumber].correctAnswer) {
-        score++;
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-            questionNumber++;
-            displayQuestion();
-            console.log(questionNumber)
-        }
-    }
-    else {
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-        secondsLeft = secondsLeft - 15;
-        questionNumber++;
-        displayQuestion();
-        }
-    }
+        if (userChoice === "1. " + questions[questionNumber].correctAnswer) {correctAnswer();}
+        else {incorrectAnswer();}
     })
-
 answerBtn2.addEventListener("click", function() {
     userChoice = event.target.textContent;
-    if (userChoice === "2. " + questions[questionNumber].correctAnswer) {
-        score++;
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-            questionNumber++;
-            displayQuestion();
-        }
-    }
-    else {
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-        secondsLeft = secondsLeft - 15;
-        questionNumber++;
-        displayQuestion();
-        }
-    }
+        if (userChoice === "2. " + questions[questionNumber].correctAnswer) {correctAnswer();}
+        else {incorrectAnswer();}
     })
-
 answerBtn3.addEventListener("click", function() {
     userChoice = event.target.textContent;
-    if (userChoice === "3. " + questions[questionNumber].correctAnswer) {
-        score++;
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-            questionNumber++;
-            displayQuestion();
-        }
-    }
-    else {
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-        secondsLeft = secondsLeft - 15;
-        questionNumber++;
-        displayQuestion();
-        }
-    }
+        if (userChoice === "3. " + questions[questionNumber].correctAnswer) {correctAnswer();}
+        else {incorrectAnswer();}
     })
-
 answerBtn4.addEventListener("click", function() {
     userChoice = event.target.textContent;
-    if (userChoice === "4. " + questions[questionNumber].correctAnswer) {
-        score++;
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-            questionNumber++;
-            displayQuestion();
-        }
-    }
-    else {
-        if (questionNumber === 4){
-            displayWinScreen();
-        }
-        else {
-        secondsLeft = secondsLeft - 15;
-        questionNumber++;
-        displayQuestion();
-        }
-    }
+        if (userChoice === "4. " + questions[questionNumber].correctAnswer) {correctAnswer();}
+        else {incorrectAnswer();}
     })
