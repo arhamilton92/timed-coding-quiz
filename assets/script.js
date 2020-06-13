@@ -73,35 +73,6 @@ function displayQuestion () {
     quiz.style = "display: block";
 }
 
-//displays the final score and quiz complete screen
-function displayWinScreen() {
-    //removes quiz content
-    quiz.style = "display: none";
-    //displays final score
-    scoreDisplay.textContent = "Score: " + score + "/5";
-    //displays quiz complete screen
-    winScreen.style = "display: block";
-    clearInterval(timerInterval);
-    resetWelcome();
-}
-
-function displayHighScores() {
-
-}
-
-//creates a button that can be used to reset to beginning
-function resetWelcome() {
-    resetBtn.textContent = "PLAY AGAIN";
-    resetBtn.setAttribute("id", "reset-button");
-    resetBtn.setAttribute("class","btn btn-info mt-4");
-    //Appends button to reset div
-    reset.append(resetBtn);
-    secondsLeft = 60;
-    questionNumber = 0;
-    score = 0;
-}
-
-
 function correctAnswer() {
     score++;
     if (questionNumber === 4){
@@ -124,9 +95,29 @@ function incorrectAnswer() {
     }
 }
 
-//click start button to begin quiz
+//displays the final score and quiz complete screen
+function displayWinScreen() {
+    quiz.style = "display: none";
+    scoreDisplay.textContent = "Score: " + score + "/5";
+    winScreen.style = "display: block";
+    clearInterval(timerInterval);
+    resetWelcome();
+}
+
+//creates a button that can be used to reset to beginning
+function resetWelcome() {
+    resetBtn.textContent = "PLAY AGAIN";
+    resetBtn.setAttribute("id", "reset-button");
+    resetBtn.setAttribute("class","btn btn-info mt-4");
+    //Appends button to reset div
+    reset.append(resetBtn);
+    secondsLeft = 60;
+    questionNumber = 0;
+    score = 0;
+}
+
+//click start button to begin quiz. removes welcome screen so quiz questions can display
 startBtn.addEventListener("click", function() {
-    // removes welcome screen so quiz questions can display
     welcome.style = "display: none";
     startTimer();
     displayQuestion();
@@ -134,33 +125,12 @@ startBtn.addEventListener("click", function() {
 
 //click reset button to delete reset button and display the original welcome intro so you can retake the quiz.
 resetBtn.addEventListener("click", function() {
-    // removes reset button
     reset.removeChild(resetBtn);
-    // removes win screen, quiz, highscore displays
     winScreen.style = "display: none";
     quiz.style = "display: none";
-    // highScore.style = "display: none";
-    // displays welcome screen
     welcome.style = "display: block";
-    //resets timer display
     timeLeft.textContent = "Time: 60";
 })
-
-// submitScore.addEventListener('click', function(event) {
-//     event.preventDefault();
-//     winScreen.style = "display: none";
-//     initialPrompt.style = "display: none";
-
-// })
-
-// showScores.addEventListener('click', function() {
-//     document.querySelector('#container').setAttribute('class', 'hide');
-//     let i = 0;
-//     while (i < scoreElements.length) {
-//         scoreElements[i].setAttribute('class', 'scoreScreen');
-//         i++;
-//     };
-// });
 
 //I didn't want to have four seperate listeners for this. But I couldn't target multiple classes/id's for one button without it breaking. So I don't know how else to do it :(
 //event listeners for answer buttons
