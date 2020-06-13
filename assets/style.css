@@ -18,14 +18,23 @@
     display: none;
 }
 
+#high-score-screen {
+    display: none;
+}
+
+.input-group {
+    width: 600px;
+}
+
 button {
     width: 200px;
+    text-align: center;
 }
 
 @media (max-width: 550px) {
-    .container { max-width: 400px;}
+    .row { max-width: 400px;}
 }
 
 @media (min-width: 550px) {
-    .container { max-width: 700px}
+    .row { max-width: 700px}
 }

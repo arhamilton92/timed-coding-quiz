@@ -16,8 +16,8 @@
             <a class="navbar-brand" id="high-score" href="#">View Highscores</a>
             <div id="time">Time: 60</div>
         </nav>
-        <main class ="container">
-            <row>
+        <main class ="container align-self-center">
+            <div>
                 <!--welcome screen container-->
                 <section class="col align-self-center mt-5 textcenter" id="intro">
                     <h1>Coding Quiz Challenge</h1>
@@ -32,6 +32,7 @@
                     <!--questions-->
                     <h4 class="mb-4" id="quiz-question">  
                     <!--answer buttons-->
+                    placeholder
                     </h4>
                         <button type="button" class="btn btn-info m-3" id="answer1"></button><br>
                         <button type="button" class="btn btn-info m-3" id="answer2"></button><br>
@@ -41,20 +42,25 @@
                 <section class="col align-self-center mt-5 textcenter" id="win-screen">
                     <!--win screen-->
                     <h1>All Done!</h1>
-                    <h3 id="score"></h3>
+                    <h3 id="score">placeholder</h3>
                 </section>
                 <!--high score form container-->
-                <section class="col align-self-center mt-5 textcenter" id="high-scores">
+                <section class="col align-self-center mt-5 textcenter">
                     <!--high score form-->
-                    <form method="POST">
-                        <label for="todo-text"><h5>Enter Initials:</h5></label>
-                        <input type="text" placeholder="Enter Your Initials!" name="todo-text" id="enter-initials" />
+                    <form id = "high-scores">
+                        <label>Enter Your Initials</label><br>
+                        <input id = "initial-input" name = "initials" type = "text">
+                        <input id = "submit-score" type = "submit" value = "SUBMIT">
                     </form>
+                </section>
+                <section class="col align-self-center mt-5 textcenter" id = "high-score-screen">
+                    <h2 class = "m-4">High Scores</h2>
+                    <p id = "show-high-scores"></p>
                 </section>
                 <div class="col align-self-center mt-5 textcenter" id="reset">
                     <!--reset button-->
                 </div>
-            </row>
+            </div>
         </main>
         <!--javascript source-->
         <script src="assets/script.js">
