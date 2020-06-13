@@ -19,7 +19,7 @@ var answerBtn3 = document.getElementById("answer3");
 var answerBtn4 = document.getElementById("answer4");
 
 var score = 0;
-var secondsLeft = "60";
+var secondsLeft = "4";
 var timerInterval = "";
 
 //an array of objects containing questions, answers, and the correct answer for each.
@@ -55,7 +55,7 @@ var questions = [
 // starts countdown
 function startTimer() {
     //starts the timer
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         secondsLeft--;
         timeLeft.textContent = "Time: " + secondsLeft;
         //stops the timer at 0 seconds left
@@ -84,6 +84,7 @@ function displayWinScreen() {
     scoreDisplay.textContent = "Score: " + score + "/5";
     //displays quiz complete screen
     winScreen.style = "display: block";
+    clearInterval(timerInterval);
     resetWelcome();
 }
 
@@ -231,3 +232,23 @@ answerBtn4.addEventListener("click", function() {
         }
     }
     })
+
+
+// //STUFF FOR HOMEWORK
+// var questions = [
+//     {
+//         question: "question",
+//         answers: ["1", "2", "3", "4"],
+//         correctAnswer: 4,
+//     }
+// ]
+// for (var i = 0; i < questions.length; i++) {
+//     if(i === questions[0].correctAnswer){
+//         console.log("that answer is correct!");
+//     }else{
+//         console.log("That answer is wrong.");
+//     }
+// }
+// //data attribute on the button
+// //0 1 2 3
+// //compare data attribute of button to correct answer
