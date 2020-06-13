@@ -127,13 +127,6 @@ resetBtn.addEventListener("click", function() {
     timeLeft.textContent = "Time: 60";
 })
 
-//NEVER GOT THIS TO WORK.
-// enterInitials.addEventListener("submit", function(event) {
-//     event.preventDefault();
-//     console.log("you submitted!");
-// })
-
-
 //I didn't want to have four seperate listeners for this. But I couldn't target multiple classes/id's for one button without it breaking. So I don't know how else to do it :(
 //event listeners for answer buttons
 answerBtn1.addEventListener("click", function() {
@@ -232,23 +225,3 @@ answerBtn4.addEventListener("click", function() {
         }
     }
     })
-
-
-// //STUFF FOR HOMEWORK
-// var questions = [
-//     {
-//         question: "question",
-//         answers: ["1", "2", "3", "4"],
-//         correctAnswer: 4,
-//     }
-// ]
-// for (var i = 0; i < questions.length; i++) {
-//     if(i === questions[0].correctAnswer){
-//         console.log("that answer is correct!");
-//     }else{
-//         console.log("That answer is wrong.");
-//     }
-// }
-// //data attribute on the button
-// //0 1 2 3
-// //compare data attribute of button to correct answer
